@@ -19,7 +19,7 @@ Website ğŸš€ <a href="https://contributte.org">contributte.org</a> | Contact ğŸ‘
 </p>
 
 <p align=center>
-	<img src="https://api.microlink.io?url=https%3A%2F%2Fexamples.contributte.org%2Fnella-skeleton%2F&overlay.browser=light&screenshot=true&meta=false&embed=screenshot.url"></img>
+	<img src="https://api.microlink.io?url=https%3A%2F%2Fexamples.contributte.org%2Fsentry-skeleton%2F&overlay.browser=light&screenshot=true&meta=false&embed=screenshot.url"></img>
 </p>
 
 -----
