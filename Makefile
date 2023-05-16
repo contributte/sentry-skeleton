@@ -41,6 +41,9 @@ coverage:
 dev:
 	NETTE_DEBUG=1 NETTE_ENV=dev php -S 0.0.0.0:8000 -t www
 
+dev-prod:
+	NETTE_DEBUG=0 NETTE_ENV=production php -S 0.0.0.0:8000 -t www
+
 build:
 	echo "OK"
 
