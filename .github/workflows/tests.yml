@@ -1,23 +1,33 @@
-name: "Nette Tester"
+name: "Phpunit"
 
 on:
   pull_request:
 
   push:
-    branches: ["*"]
+    branches: [ "*" ]
 
   schedule:
     - cron: "0 8 * * 1"
 
 jobs:
-  test81:
-    name: "Nette Tester"
-    uses: contributte/.github/.github/workflows/nette-tester.yml@v1
+  test82:
+    name: "Phpunit"
+    uses: contributte/.github/.github/workflows/phpunit.yml@v1
     with:
-        php: "8.1"
+      php: "8.2"
+      make: "init tests"
 
-  test80:
-    name: "Nette Tester"
-    uses: contributte/.github/.github/workflows/nette-tester.yml@v1
+  test81:
+    name: "Phpunit"
+    uses: contributte/.github/.github/workflows/phpunit.yml@v1
     with:
-        php: "8.0"
+      php: "8.1"
+      make: "init tests"
+
+  testlower:
+    name: "Phpunit"
+    uses: contributte/.github/.github/workflows/phpunit.yml@v1
+    with:
+      php: "8.1"
+      make: "init tests"
+      composer: "composer update --no-interaction --no-progress --prefer-dist --prefer-stable --prefer-lowest"
