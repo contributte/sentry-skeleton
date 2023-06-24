@@ -46,8 +46,7 @@ tests:
 
 .PHONY: coverage
 coverage:
-	vendor/bin/phpunit -c phpunit.xml --coverage-text --colors=never
-	vendor/bin/phpunit -c phpunit.xml --coverage-html var/tmp/tests/coverage --colors
+	vendor/bin/phpunit -c phpunit.xml --coverage-clover coverage.xml
 
 .PHONY: dev
 dev:
