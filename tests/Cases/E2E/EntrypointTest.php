@@ -3,36 +3,38 @@
 namespace Tests\Cases\E2E;
 
 use App\Bootstrap;
-use Contributte\Phpunit\AbstractTestCase;
 use Contributte\Utils\FileSystem;
 use Nette\Application\Application as WebApplication;
 use Nette\DI\Container;
+use Tester\Assert;
+use Tester\TestCase;
 use Tests\Toolkit\Tests;
 
-final class EntrypointTest extends AbstractTestCase
+require_once __DIR__ . '/../../bootstrap.php';
+
+final class EntrypointTest extends TestCase
 {
 
 	public function setUp(): void
 	{
 		parent::setUp();
 
-		if (!file_exists(Tests::CONFIG_DIR . '/local.neon')) {
+		if (!file_exists(Tests::ROOT_PATH . '/config/local.neon')) {
 			FileSystem::copy(
-				Tests::CONFIG_DIR . '/local.neon.example',
-				Tests::CONFIG_DIR . '/local.neon'
+				Tests::ROOT_PATH . '/config/local.neon.example',
+				Tests::ROOT_PATH . '/config/local.neon'
 			);
 		}
 	}
 
-	/**
-	 * @runInSeparateProcess
-	 */
 	public function testWeb(): void
 	{
 		$container = Bootstrap::boot()->createContainer();
 		$container->getByType(WebApplication::class);
 
-		$this->assertInstanceOf(Container::class, $container);
+		Assert::type(Container::class, $container);
 	}
 
 }
+
+(new EntrypointTest())->run();
