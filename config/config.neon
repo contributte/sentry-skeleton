@@ -14,6 +14,7 @@ sentry:
 
 	client:
 		dsn: "https://FILLME@FILLME.ingest.sentry.io/1FILLME"
+		prefixes: [%rootDir%]
 
 # ======================================
 # Services =============================
