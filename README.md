@@ -40,20 +40,35 @@ Create project using composer.
 
 ```bash
 composer create-project -s dev contributte/sentry-skeleton acme
+cd acme
+make init
+make project
 ```
 
-Now you have application installed. It's time to run it.
+Before starting the application, replace the placeholder `dsn` in `config/local.neon` with your Sentry DSN. `make init` creates this local file from `config/local.neon.example`.
 
 ## Startup
 
 The easiest way is to use php built-in web server.
 
 ```bash
-# make dev
-php -S 0.0.0.0:8000 -t www
+make dev
 ```
 
-Then visit [http://localhost:8000](http://localhost:8000) in your browser.
+Then visit [http://localhost:8000](http://localhost:8000) in your browser. The skeleton does not include a Docker Compose definition, so Docker is not part of its documented local setup.
+
+## Configuration
+
+`config/config.neon` enables Sentry only when Nette runs in production mode (`%productionMode%`). Keep the DSN in `config/local.neon` and use a production DSN before deploying.
+
+## Commands
+
+```bash
+make qa       # coding standard and static analysis
+make tests    # run Tester tests
+make csf      # fix coding style
+make clean    # remove temporary files and logs
+```
 
 ## Development
 
