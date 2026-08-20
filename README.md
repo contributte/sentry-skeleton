@@ -1,17 +1,19 @@
-![](https://heatbadger.now.sh/github/readme/contributte/sentry-skeleton/)
+# Sentry Skeleton
+
+![Sentry Skeleton activity](https://heatbadger.now.sh/github/readme/contributte/sentry-skeleton/)
 
 <p align=center>
-  <a href="https://github.com/contributte/sentry-skeleton/actions"><img src="https://badgen.net/github/checks/contributte/sentry-skeleton/master"></a>
-  <a href="https://coveralls.io/r/contributte/sentry-skeleton"><img src="https://badgen.net/coveralls/c/github/contributte/sentry-skeleton"></a>
-  <a href="https://packagist.org/packages/contributte/sentry-skeleton"><img src="https://badgen.net/packagist/dm/contributte/sentry-skeleton"></a>
-  <a href="https://packagist.org/packages/contributte/sentry-skeleton"><img src="https://badgen.net/packagist/v/contributte/sentry-skeleton"></a>
+  <a href="https://github.com/contributte/sentry-skeleton/actions"><img alt="Build status" src="https://badgen.net/github/checks/contributte/sentry-skeleton/master"></a>
+  <a href="https://coveralls.io/r/contributte/sentry-skeleton"><img alt="Code coverage" src="https://badgen.net/coveralls/c/github/contributte/sentry-skeleton"></a>
+  <a href="https://packagist.org/packages/contributte/sentry-skeleton"><img alt="Packagist downloads" src="https://badgen.net/packagist/dm/contributte/sentry-skeleton"></a>
+  <a href="https://packagist.org/packages/contributte/sentry-skeleton"><img alt="Packagist version" src="https://badgen.net/packagist/v/contributte/sentry-skeleton"></a>
 </p>
 <p align=center>
-  <a href="https://packagist.org/packages/contributte/sentry-skeleton"><img src="https://badgen.net/packagist/php/contributte/sentry-skeleton"></a>
-  <a href="https://github.com/contributte/sentry-skeleton"><img src="https://badgen.net/github/license/contributte/sentry-skeleton"></a>
-  <a href="https://bit.ly/ctteg"><img src="https://badgen.net/badge/support/gitter/cyan"></a>
-  <a href="https://bit.ly/cttfo"><img src="https://badgen.net/badge/support/forum/yellow"></a>
-  <a href="https://contributte.org/partners.html"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
+  <a href="https://packagist.org/packages/contributte/sentry-skeleton"><img alt="Supported PHP version" src="https://badgen.net/packagist/php/contributte/sentry-skeleton"></a>
+  <a href="https://github.com/contributte/sentry-skeleton"><img alt="License" src="https://badgen.net/github/license/contributte/sentry-skeleton"></a>
+  <a href="https://bit.ly/ctteg"><img alt="Gitter support" src="https://badgen.net/badge/support/gitter/cyan"></a>
+  <a href="https://bit.ly/cttfo"><img alt="Forum support" src="https://badgen.net/badge/support/forum/yellow"></a>
+  <a href="https://contributte.org/partners.html"><img alt="Sponsor Contributte" src="https://badgen.net/badge/sponsor/donations/F96854"></a>
 </p>
 
 <p align=center>
@@ -19,7 +21,7 @@ Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact �
 </p>
 
 <p align=center>
-	<img src="https://api.microlink.io?url=https%3A%2F%2Fexamples.contributte.org%2Fsentry-skeleton%2F&overlay.browser=light&screenshot=true&meta=false&embed=screenshot.url"></img>
+	<img alt="Sentry Skeleton demo" src="https://api.microlink.io?url=https%3A%2F%2Fexamples.contributte.org%2Fsentry-skeleton%2F&overlay.browser=light&screenshot=true&meta=false&embed=screenshot.url"></img>
 </p>
 
 -----
@@ -32,7 +34,7 @@ Main goal is to provide example of first class integration of [Sentry](https://g
 
 https://examples.contributte.org/sentry-skeleton/
 
-## Installation
+## Safe local quick start
 
 You will need `PHP 8.4+` and [Composer](https://getcomposer.org/).
 
@@ -42,24 +44,27 @@ Create project using composer.
 composer create-project -s dev contributte/sentry-skeleton acme
 cd acme
 make init
-make project
+make setup
 ```
 
-Before starting the application, replace the placeholder `dsn` in `config/local.neon` with your Sentry DSN. `make init` creates this local file from `config/local.neon.example`.
+Composer installs the dependencies. `make init` creates the ignored `config/local.neon`, and `make setup` prepares writable runtime directories.
 
-## Startup
+Before starting, keep Sentry disabled locally so opening the example route cannot send an outbound event:
 
-The easiest way is to use php built-in web server.
+```neon
+sentry:
+	enable: false
+```
 
 ```bash
 make dev
 ```
 
-Then visit [http://localhost:8000](http://localhost:8000) in your browser. The skeleton does not include a Docker Compose definition, so Docker is not part of its documented local setup.
+Then visit [http://localhost:8000](http://localhost:8000). The local page exposes example error actions, but with Sentry disabled they do not report to Sentry. The skeleton does not include a Docker Compose definition.
 
 ## Configuration
 
-`config/config.neon` enables Sentry only when Nette runs in production mode (`%productionMode%`). Keep the DSN in `config/local.neon` and use a production DSN before deploying.
+`config/config.neon` enables Sentry in production mode, while the generated local override enables it explicitly. Outbound reporting is therefore opt-in for this safe local flow: add a DSN for a dedicated development/test Sentry project and set `enable: true` only when you intend to send test events. Never put a production DSN in local configuration or commit any real DSN.
 
 ## Commands
 
@@ -77,7 +82,7 @@ See [how to contribute](https://contributte.org/contributing.html) to this packa
 This package is currently maintaining by these authors.
 
 <a href="https://github.com/f3l1x">
-    <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
+    <img alt="Milan Šulc" width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
 </a>
 
 -----
